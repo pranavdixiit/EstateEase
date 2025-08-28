@@ -1,0 +1,596 @@
+:root {
+  --color-bg-glass: rgba(255, 255, 255, 0.2);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.3);
+  --color-border: rgba(255, 255, 255, 0.35);
+  --color-text-primary: #222;
+  --color-text-secondary: #666;
+  --color-text-muted: #777;
+  --color-accent: #4263eb;
+  --color-accent-hover: #314ecc;
+  --color-badge: #e63946;
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+
+
+
+.clients-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 1.5rem;
+  font-family: Product sans, sans-serif;
+  background: var(--color-bg-glass);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+  
+}
+
+.clients-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--color-text-primary);
+}
+
+.search-bar {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 40px;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.25);
+  transition: background 0.3s ease;
+  font-family: product sans;
+ background: var(--color-bg-glass);
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="gray" stroke-width="2" fill="none"/><line x1="16" y1="16" x2="22" y2="22" stroke="gray" stroke-width="2"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 18px 18px; /* adjust as needed */
+   padding-left: 40px;  
+
+}
+
+.search-bar::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-bar:focus {
+  outline: none;
+  color: var(--color-text-primary);
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clients-table th,
+.clients-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  vertical-align: middle; /* Vertically center cell content */
+  white-space: nowrap;    /* Prevent wrapping in cells by default */
+}
+
+/* Scroll wrapper for all cells except Actions */
+.clients-table .scroll-content {
+  display: block;
+  max-height: 60px;         /* or adjust based on preference */
+  overflow-y: auto;
+  white-space: normal;      /* allow wrapping */
+  word-break: break-word;
+  scrollbar-width: none;
+}
+
+
+.clients-table th {
+  background: rgba(0, 123, 255, 0.2); /* subtle translucent accent for header */
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.clients-table tr:hover td {
+  background: var(--color-bg-glass-hover); /* subtle glassy hover effect */
+  cursor: pointer;
+}
+
+
+.clients-table .payment-pending {
+  color: var(--color-badge) !important;
+  font-weight: 700;
+}
+
+.clients-table .payment-done {
+  color: #5cb85c !important;
+  font-weight: 700;
+}
+
+
+
+.confirm-btn, .delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width:90px;
+  font-family: 'Product Sans', Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  margin:6px;
+  color: var(--color-text-primary);
+  box-shadow: 0 4px 18px rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: 
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background: rgba(144, 253, 170, 0.25); /* semi-transparent green */
+  
+  color: #5cb85c; /* Bootstrap green */
+  box-shadow: 0 0px 15px rgba(170, 254, 190, 0.4);
+  transform: scale(1.05);
+}
+
+.delete-btn:hover {
+  background: rgba(220, 53, 69, 0.25); /* semi-transparent red */
+  color: #dc3545; /* Bootstrap red */
+  box-shadow: 0 0px 15px rgba(220, 53, 69, 0.4);
+  transform: scale(1.05);
+}
+
+@font-face {
+  font-family: 'Product Sans';
+  src:
+    url('Product Sans Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+body { font-family: 'Product Sans', Arial, sans-serif; }
+
+
+/* Base styles as you provided remain the same */
+
+/* Responsive Adjustments */
+
+/* Tablet devices and smaller */
+@media (max-width: 900px) {
+  .clients-container {
+    margin: 1rem;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .clients-table {
+    font-size: 0.9rem;
+  }
+
+  .clients-table th,
+  .clients-table td {
+    padding: 10px 12px;
+  }
+
+  .confirm-btn, .delete-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    max-width: 75px;
+  }
+}
+
+/* Mobile devices: narrow screen, vertical stacking */
+
+@media (max-width: 692px) {
+
+ .clients-table,
+
+ .clients-table thead,
+
+ .clients-table tbody,
+
+ .clients-table th,
+
+ .clients-table td,
+
+ .clients-table tr {
+
+  display: block;
+
+ }
+
+
+
+
+
+ .clients-table thead tr {
+
+  position: absolute;
+
+  top: -9999px;
+
+  left: -9999px;
+
+ }
+
+
+
+
+
+ .clients-table tr {
+
+  border: 1.5px solid var(--color-border);
+
+  border-radius: 12px;
+
+  margin-bottom: 1rem;
+
+  padding: 12px;
+
+  background: var(--color-bg-glass);
+
+ }
+
+
+
+
+
+ .clients-table th{
+
+  background: rgba(0, 123, 255, 0.2);
+
+ }
+
+
+
+
+
+ .clients-table td {
+
+  border: none;
+
+  border-bottom: 1px solid var(--color-border);
+
+  position: relative;
+
+  padding-left: 50%;
+
+  text-align: left;
+
+  white-space: normal;
+
+  overflow-wrap: break-word;
+
+ }
+
+
+
+
+
+ .clients-table td:last-child {
+
+  border-bottom: none;
+
+ }
+
+
+
+
+
+ .clients-table td::before {
+
+  position: absolute;
+
+  top: 12px;
+
+  left: 16px;
+
+  width: 45%;
+
+  padding-right: 10px;
+
+  white-space: nowrap;
+
+  font-weight: 600;
+
+  content: attr(data-label);
+
+  color: var(--color-text-secondary);
+
+  font-family: 'Product Sans', Arial, sans-serif;
+
+ }
+
+
+
+
+
+ .clients-table tr:hover{
+
+  background: none;
+
+ }
+
+
+
+
+
+}
+
+
+
+
+:root {
+  --color-bg-glass: rgba(255, 255, 255, 0.2);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.3);
+  --color-border: rgba(255, 255, 255, 0.35);
+  --color-text-primary: #222;
+  --color-text-secondary: #666;
+  --color-text-muted: #777;
+  --color-accent: #4263eb;
+  --color-accent-hover: #314ecc;
+  --color-badge: #e63946;
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+.appointments-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 1.5rem;
+  font-family: Product sans, sans-serif;
+  background: var(--color-bg-glass);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+}
+
+.appointments-toggle {
+  display: inline-flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.toggle-btn {
+  padding: 10px 24px;
+  border-radius: 18px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg-glass);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Product Sans', Arial, sans-serif;
+}
+
+.toggle-btn.active {
+  background: rgba(0, 123, 255, 0.35);
+  color: white;
+  box-shadow: 0 4px 26px rgba(0, 123, 255, 0.3);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+
+.toggle-btn:hover:not(.active) {
+  background: var(--color-bg-glass-hover);
+}
+
+/* Table Base */
+.appointments-table {
+width: 100%;
+  border-collapse: collapse;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1.5px solid var(--color-border);
+  vertical-align: middle; /* Vertically center cell content */
+  white-space: nowrap;    /* Prevent wrapping in cells by default */
+}
+
+
+
+.appointments-table th {
+  background: rgba(0, 123, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+}
+
+.appointments-table tr:hover td {
+  background: var(--color-bg-glass-hover);
+  cursor: pointer;
+}
+
+.appointments-table .scroll-content {
+  display: block;
+  max-height: 60px;         /* or adjust based on preference */
+  overflow-y: auto;
+  white-space: normal;      /* allow wrapping */
+  word-break: break-word;
+  scrollbar-width: none;
+}
+
+
+/* Status styles */
+.status-confirmed {
+  color: #5cb85c;
+  font-weight: 700;
+}
+
+.status-pending {
+  color: var(--color-badge);
+  font-weight: 700;
+}
+
+/* Buttons */
+.confirm-btn,
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 90px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  margin: 6px;
+  color: var(--color-text-primary);
+  box-shadow: 0 4px 18px rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background: rgba(144, 253, 170, 0.25);
+  color: #5cb85c;
+  box-shadow: 0 0 15px rgba(170, 254, 190, 0.4);
+  transform: scale(1.05);
+}
+
+.delete-btn:hover {
+  background: rgba(220, 53, 69, 0.25);
+  color: #dc3545;
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.4);
+  transform: scale(1.05);
+}
+
+/* Responsive: Tablet */
+@media (max-width: 900px) {
+  .appointments-table {
+    font-size: 0.9rem;
+  }
+
+  .appointments-table th,
+  .appointments-table td {
+    padding: 10px 12px;
+  }
+
+  .confirm-btn,
+  .delete-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    max-width: 75px;
+  }
+}
+
+/* Responsive: Mobile (stacked format with inline labels) */
+@media (max-width: 692px) {
+
+  .appointments-container{
+    width:85%;
+  }
+
+  .appointments-table,
+  .appointments-table thead,
+  .appointments-table tbody,
+  .appointments-table th,
+  .appointments-table td,
+  .appointments-table tr {
+    display: block;
+  }
+
+  .appointments-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .appointments-table tr {
+    border: 1.5px solid var(--color-border);
+
+  border-radius: 12px;
+
+  margin-bottom: 1rem;
+
+  padding: 12px;
+
+  background: var(--color-bg-glass);
+  }
+
+  .appointments-table th {
+    background: rgba(0, 123, 255, 0.2);
+  }
+
+  .appointments-table td {
+    border: none;
+
+  border-bottom: 1px solid var(--color-border);
+
+  position: relative;
+
+  padding-left: 50%;
+
+  text-align: left;
+
+  white-space: normal;
+
+  overflow-wrap: break-word;
+  }
+
+  .appointments-table td:last-child {
+    border-bottom: none;
+  }
+
+  .appointments-table td::before {
+    position: absolute;
+
+  top: 12px;
+
+  left: 16px;
+
+  width: 45%;
+
+  padding-right: 10px;
+
+  white-space: nowrap;
+
+  font-weight: 600;
+
+  content: attr(data-label);
+
+  color: var(--color-text-secondary);
+
+  font-family: 'Product Sans', Arial, sans-serif;
+  }
+
+  
+  
+}

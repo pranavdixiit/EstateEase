@@ -1,0 +1,581 @@
+/* =======================
+   Main Container & Layout
+========================== */
+
+
+:root {
+  --color-bg-glass: rgba(255, 255, 255, 0.20);
+  --color-bg-glass-strong: rgba(255, 255, 255, 0.40);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.30);
+  --color-border: rgba(255, 255, 255, 0.35);
+
+  --color-text-primary: #222;
+  --color-text-secondary: #555;
+  --color-text-muted: #777;
+
+  --color-accent:rgba(0, 123, 255, 0.35);
+  --color-accent-hover: #314ecc;
+  --color-favorite: #e74c3c;
+  --color-favorite-hover: #c0392b;
+
+  --shadow-soft: 0 4px 24px rgba(31,38,135,0.07);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;       /* hides horizontal scrollbar */
+}
+
+.property-detail-container{
+  max-width: 1100px;
+  margin: 3rem auto;
+  font-family: product sans, Arial, sans-serif;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;          /* spacing between main blocks */
+  align-items: center; /* center carousel + info horizontally */
+}
+
+.property-horizontal-layout {
+  display: flex;
+  align-items: center;        /* vertical align center */
+  justify-content: center;    /* keep carousel and info centered */
+  gap: 40px;
+  width: 100%;
+}
+
+/* =======================
+   Image Carousel
+========================== */
+.image-carousel {
+  position: relative;
+  flex: 0 0 auto;
+  width: 640px;
+  height: 360px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(255,255,255,0.19);
+  border-radius: 32px;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.07);
+  box-sizing: border-box;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Carousel buttons */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(60, 60, 80, 0.23);
+  color: white;
+  border: none;
+  border-radius: 100%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  transition: background 0.18s, transform 0.18s;
+  z-index: 2;
+}
+.carousel-button.left { left: 22px; }
+.carousel-button.right { right: 22px; }
+
+.carousel-button:hover {
+  background: var(--color-bg-glass-hover);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* =======================
+   Property Info Section
+========================== */
+.property-info-section {
+  flex: 1;
+  max-width: 380px;
+  min-width: 260px;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.19);
+  border-radius: 32px;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.07);
+  border: 1.5px solid rgba(255,255,255,0.13);
+  padding: 32px 28px;
+  box-sizing: border-box;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  
+}
+
+.property-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;  /* spacing between text blocks */
+  text-align: left;
+  
+}
+
+/* Title */
+.property-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+  max-width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+/* Stars and favorite button row */
+.rating-fav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* stars left, heart right */
+}
+
+.property-rating {
+  font-size: 1.3rem;
+  color: #ffc107;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.property-rating .star-icon {
+  margin-right: 6px; /* Adjust gap size as needed */
+}
+
+
+/* Price */
+.property-price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-text-secondary);
+  margin: 0;
+  display: inline-block;
+  
+}
+
+/* Favorite button */
+.favorite-button {
+  font-size: 1.8rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #e7e7e7;
+  transition: color 0.2s, transform 0.2s;
+}
+.favorite-button:hover {
+  color: #c0392b;
+  transform: scale(1.15);
+}
+.favorite-active {
+  color: #e74c3c;
+}
+
+/* =======================
+   Rating Update Section
+========================== */
+
+/* Progress fill simulation with JS (recommended) */
+
+
+/* Value + Button row */
+.rating-value-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rating-update {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: transparent;
+  border-radius: 20px;
+  width: 100%;
+}
+
+/* Title at top */
+.rating-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+/* Row: slider 2/3 + button 1/3 */
+.rating-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.slider-container {
+  position: relative;
+  flex: 2;         /* takes 2/3 width */
+}
+
+/* Glassmorphic emoji tooltip label */
+/* Glassmorphic Emoji Tooltip */
+.slider-emoji-label {
+  position: absolute;
+  top: -45px;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--color-bg-glass); /* rgba value with alpha < 1 */
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(1px);
+  z-index:10;
+
+}
+
+.slider-emoji-label.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Slider track */
+.styled-slider.glass-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 12px;
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 2px 6px rgba(31,38,135,0.25),
+              0 2px 8px rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
+/* Slider thumb */
+.styled-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  border: 2px solid var(--color-border);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+.styled-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.styled-slider::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  border: 2px solid var(--color-border);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+/* Update button (takes 1/3 width) */
+.update-rating-btn {
+  flex: 1;   /* 1/3 width */
+  background: var(--color-bg-glass);
+  border: 1.5px solid var(--color-border);
+  backdrop-filter: blur(8px);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-soft);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+.update-rating-btn:hover {
+  background: var(--color-bg-glass-hover);
+  color: var(--color-accent-hover);
+  transform: scale(1.05);
+}
+.update-rating-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =======================
+   Glassmorphic Icon Style
+========================== */
+.glassmorphic-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.22);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(31,38,135,0.13);
+  backdrop-filter: blur(2px);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  transition: box-shadow 0.2s;
+}
+
+.glassmorphic-icon svg {
+  font-size: 1rem;
+}
+
+.glassmorphic-icon:hover {
+  box-shadow: 0 8px 32px rgba(31,38,135,0.22);
+}
+
+/* =======================
+   Action Buttons Styles
+========================== */
+.update-rating-btn{
+  display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+  gap: 6px;                     /* space between text and icon */
+  justify-content: center;  
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 0 4px 18px rgba(31, 38, 135, 0.1);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+    display: block;
+  margin: 0 auto;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.notify-button{display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+  gap: 6px;                     /* space between text and icon */
+  justify-content: center;  
+
+  color: white;
+  box-shadow: 0 4px 26px rgba(0, 123, 255, 0.3);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+    display: block;
+  margin: 0 auto;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+  background: rgba(0, 123, 255, 0.35); /* semi-transparent blue */
+
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.notify-button svg {
+  height: 1em;
+  width: 1em;
+
+  position: relative;
+  top: 2px; /* adjust this value up or down as needed */
+}
+
+
+
+.update-rating-btn:hover{
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 26px rgba(31, 38, 135, 0.2);
+  color: grey;
+  transform: scale(1.05);
+}
+
+.notify-button:hover{
+  background: rgba(0, 123, 255, 0.55);
+  box-shadow: 0 6px 30px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.notify-button:disabled,
+.rating-update button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  color: #999;
+}
+
+/* =======================
+   Description Area
+========================== */
+.property-description {
+  width: 100%;
+  margin: 0 auto;  /* centers block */
+  background: rgba(255,255,255,0.20);
+  border-radius: 32px;
+  box-shadow: 0 4px 32px rgba(31,38,135,0.08);
+  padding: 24px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+  text-align: left;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.desc-title {
+  font-size: 1.5rem;
+  color: #222;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+}
+
+.desc-scroll-container {
+  max-height: 200px;
+  overflow-y: auto;
+  color:var(--color-text-secondary);
+  background: transparent;
+  border-radius: 18px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: left;
+  scrollbar-width: none;
+}
+
+/* =======================
+   Popup Modal Styles
+========================== */
+.popup-overlay {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(107, 107, 107, 0.15); /* light glass tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 1000;
+  animation: fadeInOverlay 0.6s ease forwards;
+}
+
+
+.popup-modal {
+  background: var(--color-bg-glass);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px 28px;
+  width:20vw; text-align: center;
+  animation: growIn 0.3s ease forwards;
+  will-change: backdrop-filter,transform;
+  transform: translateZ(0); /* GPU hint */
+  background-clip: padding-box;
+  z-index: 10;
+ animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.popup-modal h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.popup-modal p {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: white;
+}
+
+@font-face {
+  font-family: 'Product Sans';
+  src:
+    url('Product Sans Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+body { font-family: 'Product Sans', Arial, sans-serif; }
+
+
+
+/* =======================
+   Responsive Adjustments
+========================== */
+@media (max-width: 900px) {
+  .property-horizontal-layout {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .image-carousel,
+  .property-info-section {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 18px;
+    padding: 16px;
+  }
+  .image-carousel { height: 240px; }
+  .property-description {
+    border-radius: 18px;
+    padding: 18px;
+  }
+
+  .popup-modal{
+    width:60%;
+  }
+
+}
+
+
+

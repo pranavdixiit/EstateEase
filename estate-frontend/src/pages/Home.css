@@ -1,0 +1,816 @@
+/* ---------------------------------------------------
+   Global setup + background
+----------------------------------------------------*/
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: url('c:\Users\prana\Downloads\bgg.png');
+  background-blend-mode: lighten;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: product sans, sans-serif;
+   
+  overflow-x: hidden; /* prevent horizontal scroll */
+  box-sizing: border-box;
+}
+
+/* Color tokens (consistent system) */
+:root {
+  --color-bg-glass: rgba(255, 255, 255, 0.2);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.3);
+  --color-border: rgba(255, 255, 255, 0.35);
+  --color-text-primary: #222;
+  --color-text-secondary: #666;
+  --color-text-muted: #777;
+  --color-accent: rgba(0, 123, 255, 0.6);
+  --color-accent-hover: #314ecc;
+  --color-badge: #e63946;
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+.page {
+  min-height: 100vh;
+  width: 100vw;
+  background: transparent;
+  position: relative;
+  font-family: product sans, sans-serif;
+}
+
+/* ---------------------------------------------------
+   Panel grid
+----------------------------------------------------*/
+.panel-grid {
+  display: grid;
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background: none;
+  padding: 32px;
+  box-sizing: border-box;
+  
+}
+
+/* Panels with glass effect */
+.trending-panel,
+.top-picks-panel,
+.favourites-panel,
+.user-panel, .center-panel{
+  background: var(--color-bg-glass);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+/* Layout rules for panels */
+.trending-panel {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  max-height: 50vh;
+  overflow: hidden;
+  margin-bottom: 16px;
+  
+}
+
+
+
+.top-picks-panel {
+  grid-column: 1 / 2;
+  grid-row: 3 / 5;
+  max-height: 50vh;
+  overflow: hidden;
+  
+}
+
+.favourites-panel {
+  grid-column: 3 / 4;
+  grid-row: 3 / 5;
+  overflow: hidden;
+  min-height: 300px;
+
+}
+
+.search-panel {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+     /* Reduce gap between panels */
+  display: flex;
+  justify-content: center; /* Center search input horizontally */
+  align-items: flex-start; /* Align to top */
+  height: auto;            /* Let height adapt to content */
+  box-sizing: border-box;
+   margin-bottom: 16px;
+  /* Keep your background */
+  
+}
+
+
+.user-panel {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+   margin-bottom: 16px;
+}
+
+/* ---------------------------------------------------
+   User profile area
+----------------------------------------------------*/
+.user-panel > .inner-container {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Top container for user info: 60% height */
+.user-info-container {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+/* Left side: user info text aligned left */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 70%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  color: var(--color-text-primary);
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+
+.user-email {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+
+/* Right side: user button aligned right */
+.user-button.big-round {
+  width: 80px;
+  height: 80px;
+  background: var(--color-bg-glass);
+  border-radius: 100%;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  color: white;
+  font-weight: 700;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.user-button.big-round:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(125, 125, 125, 0.15);
+  background: var(--color-bg-glass-hover);
+  color: var(--color-text-secondary);
+}
+
+/* Bottom container for buttons: 40% height */
+.user-actions-container {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Each action button container */
+.action-btn-with-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  font-size: 0.65rem;
+  position: relative; /* For badge positioning */
+}
+
+/* Action buttons */
+.action-button.rounded-rect {
+  width: 45px;
+  height: 45px;
+  color: white;
+  background: var(--color-bg-glass);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  font-size: 1.18rem;
+  cursor: pointer;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.action-button.rounded-rect:hover {
+/* Avoid changing padding or margin here */
+  background: var(--color-bg-glass-hover);
+  color: var(--color-text-secondary);
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge container */
+.badge-container {
+  position: absolute;
+  top: -4px;     /* positive value to avoid clipping */
+  right: 0px;
+  pointer-events: none;
+  transition: none; /* ensure no transition to avoid shift */
+}
+
+.notification-badge,
+.badge {
+  background: var(--color-badge);
+  color: white;
+  font-size: 0.5rem;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: product sans;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------
+   Panel lists
+----------------------------------------------------*/
+.panel-title {
+  color: var(--color-text-muted);
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: calc(100% - 40px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scrollbar-width: none;
+}
+
+.panel-item {
+  display: flex;
+  width: 85%;
+  align-items: center;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+  background: var(--color-bg-glass);
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.panel-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 8px rgba(125, 125, 125, 0.15);
+  background: var(--color-bg-glass-hover);
+}
+
+.panel-image {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 10px;
+  border: 1px solid #eee;
+  flex-shrink: 0;  
+}
+
+.panel-item-text {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-text-primary);
+  width: 100%;
+}
+.title-ellipsis {
+  white-space: nowrap;
+  overflow: auto;
+  font-weight: 600;
+  max-width: 75%;
+  scrollbar-width: none;
+}
+
+.views-text {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.rating {
+  color: var(--color-text-secondary);
+  font-size: 0.93em;
+}
+
+.rating svg{
+height: 0.8em;
+  width: 0.8em;
+
+  position: relative;
+  top: 1px; /* adjust this value up or down as needed */
+}
+
+/* ---------------------------------------------------
+   Search input
+----------------------------------------------------*/
+
+.search-input {
+  width:100%;
+  padding: 10px 15px;
+  border-radius: 40px;
+  background: var(--color-bg-glass);
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="gray" stroke-width="2" fill="none"/><line x1="16" y1="16" x2="22" y2="22" stroke="gray" stroke-width="2"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 18px 18px; /* adjust as needed */
+  padding-left: 40px;  
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 1em;
+  outline: none;
+  color: var(--color-text-primary);
+  font-family: product sans;
+  transition: border-color 0.2s, transform 0.2s ease;
+  z-index: 1; /* make sure it's above other elements */
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+
+/* ---------------------------------------------------
+   Carousel / Center panel
+----------------------------------------------------*/
+.center-panel {
+  grid-column: 2 / 3;
+  grid-row: 1 /5;
+  position: relative;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 32px;
+  box-shadow: 0 8px 40px 0 rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+.center-panel-background {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  object-fit: cover;
+  border-radius: 32px;
+  filter: brightness(0.90);
+}
+/* Carousel container */
+.carousel {
+  position: absolute;
+  top: 0; left: 0; 
+  min-width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 2;
+   /* let overlay buttons and text receive events only */
+}
+/* Text overlay */
+.carousel-text-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 38%;
+  box-sizing: border-box;
+  padding: 2.2rem 2rem 1.3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(40, 40, 40, 0.8) 0%,
+ 
+    rgba(40, 40, 40, 0.54) 50%,
+ 
+    rgba(100,100,100,0) 100%
+  );
+  border-radius: 0;
+ mask: linear-gradient(transparent,black,black);
+}
+
+
+.card-image-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor:pointer;
+}
+/* Fade animation */
+.carousel-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 32px 32px;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  position: relative;
+  will-change: opacity;
+  cursor:pointer;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Titles and ratings */
+.carousel-card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0 0;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(10,10,30,0.22);
+  max-width:80%;
+}
+
+.carousel-card-rating svg{
+height: 1em;
+width: 1em;
+  position: relative;
+  top: 1px; /* adjust this value up or down as needed */
+}
+
+/* Navigation buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  height: 80px;
+  width: 54px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.nav-button:hover {
+  background: var(--color-bg-glass-hover);
+  color: var(--color-text-secondary);
+  transform: translateY(-50%) scale(1.05);
+}
+.nav-button.left { left: 5px; }
+.nav-button.right { right: 5px; }
+
+
+/*=====modal overlay=====*/
+
+.close-button{
+    display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+                     /* space between text and icon */
+  justify-content: center;  
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 0 4px 18px rgba(31, 38, 135, 0.1);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+  margin:6px;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.logout-button,.login-button{
+  display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+                     /* space between text and icon */
+  justify-content: center;  
+  background: rgba(0, 123, 255, 0.35); /* semi-transparent blue */
+
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 0 4px 26px rgba(0, 123, 255, 0.3);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+  margin:6px;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+.close-button:hover{
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 26px rgba(31, 38, 135, 0.2);
+  color: grey;
+  transform: scale(1.05);
+}
+
+.logout-button:hover,.login-button:hover{
+  background: rgba(0, 123, 255, 0.55);
+  box-shadow: 0 6px 30px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/*--animation--*/
+
+.login-container,
+.panel-grid > div,
+.user-panel,
+.center-panel,
+.trending-panel,
+.top-picks-panel,
+.favourites-panel,.search-panel{
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(107, 107, 107, 0.15); /* light glass tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+.modal-content {
+  background: var(--color-bg-glass);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px 28px;
+  width:20vw; text-align: center;
+  animation: growIn 0.3s ease forwards;
+  will-change: backdrop-filter,transform;
+  transform: translateZ(0); /* GPU hint */
+  background-clip: padding-box;
+  z-index: 10;
+ animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@font-face {
+  font-family: 'Product Sans';
+  src:
+    url('Product Sans Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+body { font-family: 'Product Sans', Arial, sans-serif; }
+
+
+
+/* Responsiveness for screens 900px and below */
+
+@media (max-width: 768px) {
+  /* Container switches to flex column with your specified order */
+  .panel-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 16px !important;
+    gap: 16px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Ensure the panels take full width but remain centered with max width */
+   .search-panel{
+    height: 25px;
+    margin-bottom: 25px;
+   }
+ 
+ /* Panels full width, max width and padding */
+
+  .center-panel,
+  .user-panel,
+  .trending-panel,
+  .top-picks-panel,
+  .favourites-panel {
+    width: 100% !important;
+    max-width: 420px;
+    padding: 16px !important;
+    border-radius: 20px !important;
+    box-sizing: border-box;
+    background: var(--color-bg-glass);
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: hidden !important; /* Remove scrollbars */
+    margin-bottom: 10px;
+  }
+
+  /* Specific heights adjustments */
+
+    .trending-panel,
+  .top-picks-panel,
+  .favourites-panel {
+    min-height: 250px !important;
+    max-height: 250px !important;
+    height: 250px !important; /* Fixed smaller height */
+  }
+
+  .center-panel {
+    min-height: 300px !important;
+    max-height: 310px !important;
+  }
+
+  /* Ensure carousel image fills the center panel */
+  .center-panel .card-carousel {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+  }
+
+  /* Font size adjustments */
+  .panel-title {
+    font-size: 1.05rem !important;
+  }
+
+  .user-name {
+    font-size: 0.9rem !important;
+  }
+
+  .user-email {
+    font-size: 0.8rem !important;
+  }
+
+  /* Navigation buttons smaller */
+  .nav-button {
+    height: 46px !important;
+    width: 36px !important;
+  }
+
+  /* Enforce panel order as you requested */
+  .panel-grid > .search-panel {
+    order: 1;
+  }
+
+  .panel-grid > .center-panel {
+    order: 2;
+  }
+
+  .panel-grid > .user-panel {
+    order: 3;
+  }
+
+  .panel-grid > .trending-panel {
+    order: 4;
+  }
+
+  .panel-grid > .top-picks-panel {
+    order: 5;
+  }
+
+  .panel-grid > .favourites-panel {
+    order: 6;
+  }
+
+  /* Prevent horizontal scrollbar */
+  body, html {
+    overflow-x: hidden !important;
+  }
+
+  .carousel-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(10,10,30,0.22);
+  margin-bottom: 10px;
+  margin-top: 50px;
+  max-width:80%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  
+}
+.carousel-card-rating{
+  font-size: 0.8rem;
+  margin:0 0 0 0;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(10,10,30,0.22);
+}
+
+}
+

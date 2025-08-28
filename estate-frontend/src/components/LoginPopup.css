@@ -1,0 +1,131 @@
+:root {
+  --color-bg-glass: rgba(255, 255, 255, 0.2);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.3);
+  --color-border: rgba(255, 255, 255, 0.35);
+  --color-text-primary: #222;
+  --color-text-secondary: #666;
+  --color-text-muted: #777;
+  --color-accent: #4263eb;
+  --color-accent-hover: #314ecc;
+  --color-badge: #e63946;
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(107, 107, 107, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+/* Start transparent */
+  opacity: 0;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+.modal-content {
+background: var(--color-bg-glass);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px 28px;
+  width:20vw; text-align: center;
+  animation: growIn 0.3s ease forwards;
+  will-change: backdrop-filter,transform;
+  transform: translateZ(0); /* GPU hint */
+  background-clip: padding-box;
+  z-index: 10;
+ animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.modal-content h2 { margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: white;}
+
+  .modal-content p{
+      margin-bottom: 18px;
+  font-size: 1rem;
+  color: white;
+  }
+
+.close-button{
+    display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+                     /* space between text and icon */
+  justify-content: center;  
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 0 4px 18px rgba(31, 38, 135, 0.1);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+  margin:6px;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.logout-button,.login-button{
+  display: inline-flex;          /* use flexbox */
+  align-items: center;           /* vertical center */
+                     /* space between text and icon */
+  justify-content: center;  
+  background: rgba(0, 123, 255, 0.35); /* semi-transparent blue */
+
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 0 4px 26px rgba(0, 123, 255, 0.3);
+  border-radius: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: product sans;
+  margin:6px;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+.close-button:hover{
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 26px rgba(31, 38, 135, 0.2);
+  color: grey;
+  transform: scale(1.05);
+}
+
+.logout-button:hover,.login-button:hover{
+  background: rgba(0, 123, 255, 0.55);
+  box-shadow: 0 6px 30px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
+}
