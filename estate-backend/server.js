@@ -14,10 +14,11 @@ require('dotenv').config();
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:3000',       // Localhost origin
-  'https://pranavdixiit.github.io/EstateEase',// GitHub Pages origin (replace with actual URL)
-  'https://estateease-cz25.onrender.com'  // Render app origin (replace with actual URL)
+  'http://localhost:3000',         // Localhost origin
+  'https://pranavdixiit.github.io',  // GitHub Pages origin without path
+  'https://estateease-cz25.onrender.com'  // Render app origin
 ];
+
 
 app.use(cors({
   origin: function(origin, callback){
