@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Switch, Redirect, HashRouter as Router } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Home from './pages/Home';
@@ -12,8 +11,8 @@ import Appointments from './pages/Appointments';
 import PropertyDetail from './pages/PropertyDetail';
 import SearchResults from './pages/SearchResults';
 
-
 import { fetchUser } from './features/auth/authSlice';
+
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
   const { user } = useSelector(state => state.auth);
@@ -49,7 +48,7 @@ const AuthLoader = ({ children }) => {
 
 const App = () => (
   <AuthLoader>
-    <Router>
+    <Router basename="/EstateEase">
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />

@@ -5,6 +5,7 @@ import { Provider, useDispatch } from 'react-redux';
 import store from './store';
 import { fetchUser } from './features/auth/authSlice';
 import App from './App';
+import { HashRouter } from 'react-router-dom';
 
 const AuthLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -20,10 +21,15 @@ const AuthLoader = ({ children }) => {
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+
 root.render(
   <Provider store={store}>
     <AuthLoader>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </AuthLoader>
-  </Provider>,
+  </Provider>
 );
+
