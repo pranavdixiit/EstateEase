@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/EstateEase/static/css/main.f77166af.css",
-    "main.js": "/EstateEase/static/js/main.eb17f84a.js",
+    "main.js": "/EstateEase/static/js/main.60d02f92.js",
     "static/media/bgg.png": "/EstateEase/static/media/bgg.54d8ab02de5a4756ae3a.png",
     "static/media/Product Sans Regular.ttf": "/EstateEase/static/media/Product Sans Regular.d165384076551a756b3c.ttf",
     "index.html": "/EstateEase/index.html",
     "main.f77166af.css.map": "/EstateEase/static/css/main.f77166af.css.map",
-    "main.eb17f84a.js.map": "/EstateEase/static/js/main.eb17f84a.js.map"
+    "main.60d02f92.js.map": "/EstateEase/static/js/main.60d02f92.js.map"
   },
   "entrypoints": [
     "static/css/main.f77166af.css",
-    "static/js/main.eb17f84a.js"
+    "static/js/main.60d02f92.js"
   ]
 }
