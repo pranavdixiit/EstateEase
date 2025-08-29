@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom'; // v5 useHistory
 import { useDispatch } from 'react-redux';
 import { fetchUser } from '../features/auth/authSlice';
 
+import { Link } from 'react-router-dom';
+
+
 import './Login.css';
 
 // Correct environment variable usage without escapes
@@ -72,11 +75,11 @@ const Login = () => {
             <button type="submit">Log In</button>
           </form>
           <p className="signup-label">
-            Don't have an account?{' '}
-            <a href="/EstateEase/register" className="signup-link">
-              Sign up
-            </a>
-          </p>
+  Don't have an account?{' '}
+  <Link to="/register" className="signup-link">
+    Sign up
+  </Link>
+</p>
         </div>
       </div>
     </div>
