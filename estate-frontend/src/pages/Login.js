@@ -73,7 +73,7 @@ const Login = () => {
           </form>
           <p className="signup-label">
             Don't have an account?{' '}
-            <a href="/register" className="signup-link">
+            <a href="/EstateEase/register" className="signup-link">
               Sign up
             </a>
           </p>
