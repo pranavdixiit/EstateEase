@@ -16,6 +16,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',         // Localhost origin
   'https://pranavdixiit.github.io',  // GitHub Pages origin without path
+  'https://alishagandhii.github.io',
   'https://estateease-cz25.onrender.com'  // Render app origin
 ];
 
